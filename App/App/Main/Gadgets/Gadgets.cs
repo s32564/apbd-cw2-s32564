@@ -6,7 +6,7 @@ public class Gadgets
     public string Model { set; get; }
     public bool IsAvailable { set; get; }
 
-    public Gadgets(int id, string model)
+    protected Gadgets(int id, string model)
     {
         Id = id;
         Model = model;
