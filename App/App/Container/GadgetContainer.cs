@@ -2,13 +2,13 @@
 
 namespace App.Container;
 
-public class GadgetContainer
+public class GadgetContainer : IGadgetContainer
 {
-    private static readonly List<Gadgets> Gadgets = [];
+    private readonly List<Gadgets> _gadgets = [];
 
-    public static void Add(Gadgets gadget) => Gadgets.Add(gadget);
+    public void Add(Gadgets gadget) => _gadgets.Add(gadget);
 
-    public static Gadgets GetSingle(int id) => Gadgets.First(g => g.Id == id);
+    public Gadgets GetSingle(int id) => _gadgets.First(g => g.Id == id);
 
-    public static IEnumerable<Gadgets> GetAll() => Gadgets;
+    public IEnumerable<Gadgets> GetAll() => _gadgets;
 }

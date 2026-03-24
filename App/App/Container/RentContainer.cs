@@ -2,13 +2,13 @@
 
 namespace App.Container;
 
-public class RentContainer
+public class RentContainer : IRentContainer
 {
-    private static readonly List<Rents> Rents = [];
+    private readonly List<Rents> _rents = [];
 
-    public static void Add(Rents gadget) => Rents.Add(gadget);
+    public void Add(Rents rent) => _rents.Add(rent);
 
-    public static Rents GetSingle(int id) => Rents.First(g => g.Id == id);
+    public Rents GetSingle(int id) => _rents.First(g => g.Id == id);
 
-    public static IEnumerable<Rents> GetAll() => Rents;
+    public IEnumerable<Rents> GetAll() => _rents;
 }

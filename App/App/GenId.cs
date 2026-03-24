@@ -1,6 +1,6 @@
 ﻿namespace App;
 
-public class GenId()
+public abstract class GenId()
 {
     private static int _gCounter;
     private static int _uCounter;

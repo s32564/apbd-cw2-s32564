@@ -2,13 +2,13 @@
 
 namespace App.Container;
 
-public class UserContainer
+public class UserContainer : IUserContainer
 {
-    private static readonly List<Users> Users = [];
+    private readonly List<Users> _users = [];
 
-    public static void Add(Users gadget) => Users.Add(gadget);
+    public void Add(Users user) => _users.Add(user);
 
-    public static Users GetSingle(int id) => Users.First(g => g.Id == id);
+    public Users GetSingle(int id) => _users.First(g => g.Id == id);
 
-    public static IEnumerable<Users> GetAll() => Users;
+    public IEnumerable<Users> GetAll() => _users;
 }
