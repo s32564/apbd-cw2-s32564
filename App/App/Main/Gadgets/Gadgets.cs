@@ -1,16 +1,10 @@
 ﻿namespace App.Main.Gadgets;
 
-public class Gadgets
+public class Gadgets(int id, string model)
 {
-    public int Id { get; }
-    public string Model { set; get; }
+    public int Id { get; } = id;
+    public string Model { set; get; } = model;
     public bool IsAvailable { set; get; }
-
-    protected Gadgets(int id, string model)
-    {
-        Id = id;
-        Model = model;
-    }
 
     public void SetAvailable(bool isAvailable)
     {
