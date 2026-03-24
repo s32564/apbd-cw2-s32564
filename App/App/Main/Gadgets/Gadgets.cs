@@ -4,9 +4,9 @@ public class Gadgets(int id, string model)
 {
     public int Id { get; } = id;
     public string Model { set; get; } = model;
-    public bool IsAvailable { set; get; }
+    public bool IsAvailable { set; get; } = true;
 
-    public void SetAvailable(bool isAvailable)
+    public void SetAvailable()
     {
         IsAvailable = true;
     }

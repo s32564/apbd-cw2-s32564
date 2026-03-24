@@ -1,6 +1,6 @@
 ﻿namespace App.Main;
 
-public class ReturnControl(int id, int userId, int gadgetId, DateTime start, DateTime end)
+public class Rents(int id, int userId, int gadgetId, DateTime start, DateTime end)
 {
     public int Id { get; } = id;
     public int UserId { get; } = userId;

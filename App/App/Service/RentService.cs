@@ -1,6 +1,6 @@
 ﻿namespace App.Service;
 
-public class UserS
+public class RentService
 {
     
 }

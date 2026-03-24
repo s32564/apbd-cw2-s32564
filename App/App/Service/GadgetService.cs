@@ -1,6 +1,6 @@
 ﻿namespace App.Service;
 
-public class RentS
+public class GadgetService
 {
     
 }
