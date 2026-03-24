@@ -1,6 +1,7 @@
 ﻿using App.Container;
 using App.Main.Gadgets;
 using App.Main.Users;
+using App.Service;
 
 namespace App;
 
@@ -10,6 +11,9 @@ public static class Program
 	{
 		var gadgetContainer = new GadgetContainer();
 		var userContainer = new UserContainer();
+		var rentContainer = new RentContainer();
+
+		var rentService = new RentService(rentContainer, gadgetContainer, userContainer);
 
 		var gadget1 = new Laptop(GenId.Generate(gadgetContainer.GetAll()), "Mega1", 16, true);
 		gadgetContainer.Add(gadget1);
@@ -29,5 +33,9 @@ public static class Program
 		userContainer.Add(user3);
 
 
+		rentService.Rent(user1.Id, gadget1.Id, 2);
+		rentService.Rent(user1.Id, gadget2.Id, 2);
+		rentService.Rent(user1.Id, gadget3.Id, 2);
+		rentService.Return(user1.Id,  gadget1.Id);
 	}
 }

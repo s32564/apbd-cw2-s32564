@@ -11,4 +11,6 @@ public class RentContainer : IRentContainer
     public Rents GetSingle(int id) => _rents.First(g => g.Id == id);
 
     public IEnumerable<Rents> GetAll() => _rents;
+
+    public void Remove(Rents rent) => _rents.Remove(rent);
 }
