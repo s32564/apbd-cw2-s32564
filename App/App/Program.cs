@@ -2,6 +2,7 @@
 using App.Main.Gadgets;
 using App.Main.Users;
 using App.Service;
+// using App.UI;
 
 namespace App;
 
@@ -15,6 +16,11 @@ public static class Program
 
 		var rentService = new RentService(rentContainer, gadgetContainer, userContainer);
 
+		var user1 = new Student(GenId.Generate(userContainer.GetAll()), "John", "Blue");
+		userContainer.Add(user1);
+		var user2 = new Employee(GenId.Generate(userContainer.GetAll()), "Alice", "Green");
+		userContainer.Add(user2);
+
 		var gadget1 = new Laptop(GenId.Generate(gadgetContainer.GetAll()), "Mega1", 16, true);
 		gadgetContainer.Add(gadget1);
 		var gadget2 = new Camera(GenId.Generate(gadgetContainer.GetAll()), "Mega2", 100, true);
@@ -22,20 +28,34 @@ public static class Program
 		var gadget3 = new Projector(GenId.Generate(gadgetContainer.GetAll()), "Mega3", 100, 100);
 		gadgetContainer.Add(gadget3);
 
-		var single = gadgetContainer.GetSingle(2);
-		Console.WriteLine(single);
+		rentService.Rent(user1.Id, gadget2.Id, "22.03.2026 00:00:00");
+		rentService.Return(user1.Id, gadget2.Id);
 
-		var user1 = new Student(GenId.Generate(userContainer.GetAll()), "Jan", "Kowalski");
-		userContainer.Add(user1);
-		var user2 = new Employee(GenId.Generate(userContainer.GetAll()), "John", "Doe");
-		userContainer.Add(user2);
-		var user3 = new Student(GenId.Generate(userContainer.GetAll()), "Blue", "Green");
-		userContainer.Add(user3);
+		Console.WriteLine();
 
+		rentService.Rent(user2.Id, gadget1.Id, "01.01.2027 00:00:00");
+		rentService.Return(user2.Id, gadget1.Id);
 
-		rentService.Rent(user1.Id, gadget1.Id, 2);
-		rentService.Rent(user1.Id, gadget2.Id, 2);
-		rentService.Rent(user1.Id, gadget3.Id, 2);
-		rentService.Return(user1.Id,  gadget1.Id);
+		Console.WriteLine();
+
+		Console.WriteLine($"Gadgets: {gadgetContainer.GetAll().Count()}\n" +
+		                  $"Type   ID   Model   Available");
+		foreach (var gadget in gadgetContainer.GetAll())
+			Console.WriteLine($"{gadget.GetType().Name} {gadget.Id} {gadget.Model} {gadget.IsAvailable}");
+		Console.WriteLine();
+
+		Console.WriteLine($"Users: {userContainer.GetAll().Count()}\n" +
+		                  $"ID   Surname   Name");
+		foreach (var user in userContainer.GetAll())
+			Console.WriteLine($"{user.Id} {user.Surname} {user.Name}");
+		Console.WriteLine();
+
+		Console.WriteLine($"Rents: {rentContainer.GetAll().Count()}\n" +
+		                  $"ID   User ID   Gadget ID      From              Until                  Returned");
+		foreach (var rent in rentContainer.GetAll())
+			Console.WriteLine($"{rent.Id}        {rent.UserId}        {rent.GadgetId}        {rent.Start} {rent.End} {rent.Returned}");
+		Console.WriteLine();
+
+		// Starter.Start(args, gadgetContainer, userContainer, rentContainer, rentService);
 	}
 }

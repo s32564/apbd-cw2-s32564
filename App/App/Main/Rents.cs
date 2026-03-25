@@ -18,7 +18,6 @@ public class Rents(int id, int userId, int gadgetId, DateTime start, DateTime en
 
         if (!(Returned > End)) return 0;
         var daysLate = (Returned - End).Value.Days;
-        rent.Remove(this);
         return daysLate * 2;
     }
 }

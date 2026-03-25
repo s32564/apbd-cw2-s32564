@@ -7,5 +7,4 @@ public interface IRentContainer
     void Add(Rents rent);
     Rents GetSingle(int id);
     IEnumerable<Rents> GetAll();
-    void Remove(Rents rent);
 }

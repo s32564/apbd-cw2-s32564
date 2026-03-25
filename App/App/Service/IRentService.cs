@@ -2,6 +2,6 @@
 
 public interface IRentService
 {
-    void Rent(int userId, int gadgetId, int daysToRent);
+    void Rent(int userId, int gadgetId, string dateToRet);
     void Return(int userId, int gadgetId);
 }

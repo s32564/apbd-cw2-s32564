@@ -7,7 +7,7 @@ public class RentService(IRentContainer rents, IGadgetContainer gadgets, IUserCo
     : IRentService
 {
 
-    public void Rent(int userId, int gadgetId, int daysToRent)
+    public void Rent(int userId, int gadgetId, string dateToRet)
     {
         var user = users.GetSingle(userId);
         var gadget = gadgets.GetSingle(gadgetId);
@@ -29,8 +29,8 @@ public class RentService(IRentContainer rents, IGadgetContainer gadgets, IUserCo
             GenId.Generate(rents.GetAll()),
             userId,
             gadgetId,
-            DateTime.Now,
-            DateTime.Now.AddDays(daysToRent));
+            DateTime.Parse("19.03.2026 00:00:00"),
+            DateTime.Parse(dateToRet));
         gadget.SetUnavailable();
         rents.Add(rent);
         users.AddRent(userId);
@@ -49,7 +49,7 @@ public class RentService(IRentContainer rents, IGadgetContainer gadgets, IUserCo
                 var toPay = rent.Return(DateTime.Now);
                 Console.WriteLine("You have successfully returned the rent!");
                 if (toPay > 0)
-                    Console.WriteLine($"\nYou missed the date. You need to pay {toPay} PLN.");
+                    Console.WriteLine($"You missed the date. You need to pay {toPay} PLN.");
                 gadget.SetAvailable();
                 users.RemoveRent(userId);
                 break;
